@@ -36,3 +36,16 @@ class Queue:
             self.__tail = None
 
         return popVal
+
+class Graph:
+    def __init__(self, vertices: int):
+        self.vertices = vertices
+        self.adjList = [[] for vertex in range(vertices)]
+
+    def addEdge(self, u: int, v: int):
+        self.adjList[u].append(v)
+        self.adjList[v].append(u)
+
+    def neighbors(self, vertex: int) -> list[int]:
+        return self.adjList[vertex]
+
