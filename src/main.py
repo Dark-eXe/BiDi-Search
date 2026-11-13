@@ -49,3 +49,42 @@ class Graph:
     def neighbors(self, vertex: int) -> list[int]:
         return self.adjList[vertex]
 
+class BiDi_Search:
+    """Bidirectional breadth-first search on given graph, source, and destination using greedy frontier expansion."""
+
+    def __init__(self, graph: Graph):
+        """Given a Graph object with vertices and an adjacency list, initializes essential data structures for bidirectional search including:
+            - visited arrays
+            - parent arrays
+            - search queues
+        """
+        self.graph = graph
+        self.clean()
+
+    def search(self, src, dest) -> list | None:
+        """Search for intersection, returning path in list representation or None if no path found"""
+        self.src, self.dest = src, dest
+        self.clean()
+        ...
+
+    def _expand(self, frontier: str = "src") -> int | None:
+        """Search an entire level/depth for an intersection given on either 'src' or 'dest' frontier"""
+        pass
+
+    def _nextFrontier(self) -> str:
+        """Returns either 'src' or 'dest'"""
+        pass
+
+    def _reconstructPath(self, intersection) -> list | None:
+        """Returns list representation of found path: [src, ..., intersection, ..., dest]"""
+        pass
+
+    def clean(self) -> None:
+        """Cleans variables, allowing for new src and dest searches"""
+        self.visited_src = [False for vertex in range(self.graph.vertices)]
+        self.parent_src = [None for vertex in range(self.graph.vertices)]
+        self.queue_src = Queue()
+
+        self.visited_dest = [False for vertex in range(self.graph.vertices)]
+        self.parent_dest = [None for vertex in range(self.graph.vertices)]
+        self.queue_dest = Queue()
