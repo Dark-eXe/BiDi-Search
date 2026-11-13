@@ -1,3 +1,5 @@
+from typing import Any
+
 class QueueNode:
     """Linked list node"""
     def __init__(self, x):
@@ -25,7 +27,7 @@ class Queue:
             self.__tail.next = newNode
             self.__tail = newNode
 
-    def dequeue(self) -> any | None:
+    def dequeue(self) -> Any | None:
         if self.isEmpty():
             return None
 
@@ -88,3 +90,6 @@ class BiDi_Search:
         self.visited_dest = [False for vertex in range(self.graph.vertices)]
         self.parent_dest = [None for vertex in range(self.graph.vertices)]
         self.queue_dest = Queue()
+
+if __name__ == "__main__":
+    print(BiDi_Search(Graph(5)))
