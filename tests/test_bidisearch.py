@@ -24,7 +24,6 @@ def process_txt(txt):
             
 
 def test_queue():
-    print('hello')
     testQueue = Queue()
     assert testQueue.isEmpty()
 
