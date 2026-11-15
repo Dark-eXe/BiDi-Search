@@ -8,7 +8,7 @@ class QueueNode:
 
 
 class Queue:
-    """Manual implementation for queue data strucutre using linked lists and pointers to head and tail."""
+    """Manual implementation for queue data structure using linked lists and pointers to head and tail."""
 
     def __init__(self) -> None:
         self.__head = None
