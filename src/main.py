@@ -67,7 +67,14 @@ class BiDi_Search:
         """Search for intersection, returning path in list representation or None if no path found"""
         self.src, self.dest = src, dest
         self.clean()
-        ...
+
+        self.queue_src.enqueue(self.src)
+        self.queue_dest.enqueue(self.dest)
+        while not self.queue_src.isEmpty() or not self.queue_dest.isEmpty():
+            intersectionFound = self._expand(frontier=self._nextFrontier)
+            if intersectionFound is not None:
+                return self._reconstructPath(intersection=intersectionFound)
+        return None
 
     def _expand(self, frontier: str) -> int | None:
         """Search an entire level/depth for an intersection given on either 'src' or 'dest' frontier"""
