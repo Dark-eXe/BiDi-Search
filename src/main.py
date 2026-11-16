@@ -13,6 +13,7 @@ class Queue:
     def __init__(self) -> None:
         self.__head = None
         self.__tail = None
+        self.__length = 0
 
     def isEmpty(self) -> bool:
         return self.__head is None
@@ -27,6 +28,8 @@ class Queue:
             self.__tail.next = newNode
             self.__tail = newNode
 
+        self.__length += 1
+
     def dequeue(self) -> Any | None:
         if self.isEmpty():
             return None
@@ -37,7 +40,11 @@ class Queue:
         if self.isEmpty():
             self.__tail = None
 
+        self.__length -= 1
         return popVal
+
+    def __len__(self):
+        return self.__length
 
 class Graph:
     def __init__(self, vertices: int):
@@ -85,7 +92,9 @@ class BiDi_Search:
 
     def _nextFrontier(self) -> str:
         """Returns either 'src' or 'dest'"""
-        pass
+        if self.queue_src.isEmpty() and self.queue_dest.isEmpty():
+            raise RuntimeError("Both src and dest queues are empty!")
+        return "src" if len(self.queue_src) <= len(self.queue_dest) else "dest"
 
     def _reconstructPath(self, intersection: int) -> list | None:
         """Returns list representation of found path: [src, ..., intersection, ..., dest]"""
