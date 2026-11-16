@@ -69,16 +69,22 @@ class BiDi_Search:
         self.clean()
         ...
 
-    def _expand(self, frontier: str = "src") -> int | None:
+    def _expand(self, frontier: str) -> int | None:
         """Search an entire level/depth for an intersection given on either 'src' or 'dest' frontier"""
+        if frontier != "src" and frontier != "dest":
+            raise ValueError(f"Arg 'frontier' must either be 'src' or 'dest'...\
+                              your 'frontier' value: {frontier}")
         pass
 
     def _nextFrontier(self) -> str:
         """Returns either 'src' or 'dest'"""
         pass
 
-    def _reconstructPath(self, intersection) -> list | None:
+    def _reconstructPath(self, intersection: int) -> list | None:
         """Returns list representation of found path: [src, ..., intersection, ..., dest]"""
+        if intersection not in range(self.graph.vertices):
+            raise ValueError(f"Arg 'intersection' must be in valid vertex range: [0, {self.graph.verices})...\
+                             your 'intersection' value: {intersection}")
         pass
 
     def clean(self) -> None:
