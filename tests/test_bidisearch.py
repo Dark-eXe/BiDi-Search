@@ -40,7 +40,7 @@ def test_bidisearch_1():
     assert (vertices, edges) == (8, 9)
     assert (src, dest) == (0, 7)
     assert testGraph.vertices == vertices
-    assert testGraph.adjList[0] == [1, 2]
+    assert testGraph.neighbors(0) == [1, 2]
 
     testSearch = BiDi_Search(testGraph)
     possible_paths = []
@@ -55,7 +55,7 @@ def test_bidisearch_2():
     assert (vertices, edges) == (10, 8)
     assert (src, dest) == (0, 9)
     assert testGraph.vertices == vertices
-    assert testGraph.adjList[0] == [1, 2]
+    assert testGraph.neighbors(0) == [1, 2]
 
     testSearch = BiDi_Search(testGraph)
     assert testSearch.search(src, dest) is None
@@ -66,7 +66,7 @@ def test_bidisearch_3():
     assert (vertices, edges) == (12, 14)
     assert (src, dest) == (0, 11)
     assert testGraph.vertices == vertices
-    assert testGraph.adjList[0] == [1, 5, 7]
+    assert testGraph.neighbors(0) == [1, 5, 7]
 
     testSearch = BiDi_Search(testGraph)
     shortest_path = [0, 5, 6, 11]
@@ -78,7 +78,7 @@ def test_bdidisearch_4():
     assert (vertices, edges) == (16, 15)
     assert (src, dest) == (0, 15)
     assert testGraph.vertices == vertices
-    assert testGraph.adjList[0] == list(range(1, 9))
+    assert testGraph.neighbors(0) == list(range(1, 9))
 
     testSearch = BiDi_Search(testGraph)
     shortest_path = [0, 1, 9, 10, 11, 12, 13, 14, 15]
