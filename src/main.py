@@ -78,9 +78,10 @@ class BiDi_Search:
         self.queue_src.enqueue(self.src)
         self.queue_dest.enqueue(self.dest)
         while not self.queue_src.isEmpty() or not self.queue_dest.isEmpty():
-            intersectionFound = self._expand(frontier=self._nextFrontier)
+            intersectionFound = self._expand(frontier=self._nextFrontier())
             if intersectionFound is not None:
                 return self._reconstructPath(intersection=intersectionFound)
+            self.clean() # COMMENT OUT ONCE search() has been filled in completely
         return None
 
     def _expand(self, frontier: str) -> int | None:
@@ -94,6 +95,11 @@ class BiDi_Search:
         """Returns either 'src' or 'dest'"""
         if self.queue_src.isEmpty() and self.queue_dest.isEmpty():
             raise RuntimeError("Both src and dest queues are empty!")
+        if self.queue_src.isEmpty():
+            return "dest"
+        if self.queue_dest.isEmpty():
+            return "src"
+        
         return "src" if len(self.queue_src) <= len(self.queue_dest) else "dest"
 
     def _reconstructPath(self, intersection: int) -> list | None:
