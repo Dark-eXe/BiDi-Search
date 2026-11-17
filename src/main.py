@@ -87,7 +87,6 @@ class BiDi_Search:
             intersectionFound = self._expand(frontier=self._nextFrontier())
             if intersectionFound is not None:
                 return self._reconstructPath(intersection=intersectionFound)
-            #self.clean() # COMMENT OUT ONCE search() has been filled in completely
         return None
 
     def _expand(self, frontier: str) -> int | None:
