@@ -83,3 +83,35 @@ def test_bdidisearch_4():
     testSearch = BiDi_Search(testGraph)
     shortest_path = [0, 1, 9, 10, 11, 12, 13, 14, 15]
     assert testSearch.search(src, dest) == shortest_path
+
+def test_bidisearch_120_tree():
+    vertices, edges, src, dest, testGraph = process_txt("data/test_120_tree.txt")
+
+    assert (vertices, edges) == (120, 119)
+    assert (src, dest) == (73, 118)
+    assert testGraph.vertices == vertices
+
+    testSearch = BiDi_Search(testGraph)
+    shortest_path = [73, 36, 17, 8, 3, 1, 0, 2, 6, 13, 28, 58, 118]
+    assert testSearch.search(src, dest) == shortest_path
+
+def test_bidisearch_250_dense():
+    vertices, edges, src, dest, testGraph = process_txt("data/test_250_dense.txt")
+
+    assert (vertices, edges) == (250, 600)
+    assert (src, dest) == (0, 249)
+    assert testGraph.vertices == vertices
+
+    testSearch = BiDi_Search(testGraph)
+    shortest_path = [0, 1, 59, 173, 174, 249]
+    assert testSearch.search(src, dest) == shortest_path
+
+def test_bidisearch_300_disconnected():
+    vertices, edges, src, dest, testGraph = process_txt("data/test_300_disconnected.txt")
+
+    assert (vertices, edges) == (300, 520)
+    assert (src, dest) == (0, 299)
+    assert testGraph.vertices == vertices
+
+    testSearch = BiDi_Search(testGraph)
+    assert testSearch.search(src, dest) is None
