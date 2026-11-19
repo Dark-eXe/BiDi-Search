@@ -69,7 +69,7 @@ edges = [
 ]
 
 for u, v in edges:
-    graph.addEge(u, v)
+    graph.addEdge(u, v)
 ```
 
 Initialize the search and find the shortest path:
