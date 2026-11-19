@@ -1,26 +1,6 @@
 # BiDi-Search
 Object-oriented implementation of bidirectional breadth-first search of an undirected, unweighted graph.
 
-## Algorithm
-
-This implementation uses bidirectional breadth-first search (BFS) to find shortest paths in unweighted graphs.
-
-Rather than searching exclusively from the source, it maintains two search frontiers:
-
-- **Forward frontier:** Expands outward from the source.
-- **Backward frontier:** Expands outward from the destination.
-
-At each iteration, the algorithm expands the smaller frontier by one complete BFS level. When both searches discover a common vertex, their parent mappings are combined to reconstruct the shortest path.
-
-### Features
-
-- Shortest-path search in undirected, unweighted graphs
-- Greedy frontier selection based on frontier size
-- Level-by-level BFS expansion
-- Custom linked-list queue implementation
-- Path reconstruction using parent mappings
-- No external runtime dependencies
-
 ## Installation
 
 ### Install directly from GitHub
