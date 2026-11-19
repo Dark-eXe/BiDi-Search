@@ -1,4 +1,4 @@
-from src import Graph
+from bidisearch import Graph
 
 def test_graph():
     testGraph = Graph(10)

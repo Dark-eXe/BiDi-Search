@@ -1,4 +1,4 @@
-from src.queue import Queue
+from bidisearch import Queue
 
 def test_queue():
     testQueue = Queue()
