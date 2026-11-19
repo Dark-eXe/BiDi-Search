@@ -1,64 +1,7 @@
-from typing import Any
+from .queue import Queue
+from .graph import Graph
 
-class QueueNode:
-    """Linked list node"""
-    def __init__(self, x):
-        self.val = x
-        self.next = None
-
-
-class Queue:
-    """Manual implementation for queue data structure using linked lists and pointers to head and tail."""
-
-    def __init__(self) -> None:
-        self.__head = None
-        self.__tail = None
-        self.__length = 0
-
-    def isEmpty(self) -> bool:
-        return self.__head is None
-
-    def enqueue(self, x) -> None:
-        newNode = QueueNode(x)
-
-        if self.isEmpty():
-            self.__head = newNode
-            self.__tail = newNode
-        else:
-            self.__tail.next = newNode
-            self.__tail = newNode
-
-        self.__length += 1
-
-    def dequeue(self) -> Any | None:
-        if self.isEmpty():
-            return None
-
-        popVal = self.__head.val
-        self.__head = self.__head.next
-
-        if self.isEmpty():
-            self.__tail = None
-
-        self.__length -= 1
-        return popVal
-
-    def __len__(self):
-        return self.__length
-
-class Graph:
-    def __init__(self, vertices: int):
-        self.vertices = vertices
-        self.adjList = [[] for vertex in range(vertices)]
-
-    def addEdge(self, u: int, v: int):
-        self.adjList[u].append(v)
-        self.adjList[v].append(u)
-
-    def neighbors(self, vertex: int) -> list[int]:
-        return self.adjList[vertex]
-
-class BiDi_Search:
+class BiDiSearch:
     """Bidirectional breadth-first search on given graph, source, and destination using greedy frontier expansion."""
 
     def __init__(self, graph: Graph):
@@ -161,6 +104,3 @@ class BiDi_Search:
         self.visited_dest = [False for vertex in range(self.graph.vertices)]
         self.parent_dest = [None for vertex in range(self.graph.vertices)]
         self.queue_dest = Queue()
-
-if __name__ == "__main__":
-    print("Run pytest for tests/test_bidisearch.py")
