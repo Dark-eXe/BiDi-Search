@@ -1,4 +1,4 @@
-from src.main import Queue, Graph, BiDi_Search
+from src import *
 
 def process_txt(txt):
     testGraph = None
@@ -22,18 +22,6 @@ def process_txt(txt):
     return (vertices, edges, src, dest, testGraph)
             
 
-def test_queue():
-    testQueue = Queue()
-    assert testQueue.isEmpty()
-
-    for i in range(5):
-        testQueue.enqueue(i)
-    assert not testQueue.isEmpty()
-    for i in range(5):
-        assert i == testQueue.dequeue()
-
-    assert testQueue.isEmpty()
-
 def test_bidisearch_1():
     vertices, edges, src, dest, testGraph = process_txt("data/1.txt")
 
@@ -42,7 +30,7 @@ def test_bidisearch_1():
     assert testGraph.vertices == vertices
     assert testGraph.neighbors(0) == [1, 2]
 
-    testSearch = BiDi_Search(testGraph)
+    testSearch = BiDiSearch(testGraph)
     possible_paths = []
     possible_paths.append([0, 2, 4, 5, 6, 7])
     possible_paths.append([0, 1, 3, 5, 6, 7])
@@ -57,7 +45,7 @@ def test_bidisearch_2():
     assert testGraph.vertices == vertices
     assert testGraph.neighbors(0) == [1, 2]
 
-    testSearch = BiDi_Search(testGraph)
+    testSearch = BiDiSearch(testGraph)
     assert testSearch.search(src, dest) is None
 
 def test_bidisearch_3():
@@ -68,7 +56,7 @@ def test_bidisearch_3():
     assert testGraph.vertices == vertices
     assert testGraph.neighbors(0) == [1, 5, 7]
 
-    testSearch = BiDi_Search(testGraph)
+    testSearch = BiDiSearch(testGraph)
     shortest_path = [0, 5, 6, 11]
     assert testSearch.search(src, dest) == shortest_path
 
@@ -80,7 +68,7 @@ def test_bdidisearch_4():
     assert testGraph.vertices == vertices
     assert testGraph.neighbors(0) == list(range(1, 9))
 
-    testSearch = BiDi_Search(testGraph)
+    testSearch = BiDiSearch(testGraph)
     shortest_path = [0, 1, 9, 10, 11, 12, 13, 14, 15]
     assert testSearch.search(src, dest) == shortest_path
 
@@ -91,7 +79,7 @@ def test_bidisearch_120_tree():
     assert (src, dest) == (73, 118)
     assert testGraph.vertices == vertices
 
-    testSearch = BiDi_Search(testGraph)
+    testSearch = BiDiSearch(testGraph)
     shortest_path = [73, 36, 17, 8, 3, 1, 0, 2, 6, 13, 28, 58, 118]
     assert testSearch.search(src, dest) == shortest_path
 
@@ -102,7 +90,7 @@ def test_bidisearch_250_dense():
     assert (src, dest) == (0, 249)
     assert testGraph.vertices == vertices
 
-    testSearch = BiDi_Search(testGraph)
+    testSearch = BiDiSearch(testGraph)
     shortest_path = [0, 1, 59, 173, 174, 249]
     assert testSearch.search(src, dest) == shortest_path
 
@@ -113,5 +101,5 @@ def test_bidisearch_300_disconnected():
     assert (src, dest) == (0, 299)
     assert testGraph.vertices == vertices
 
-    testSearch = BiDi_Search(testGraph)
+    testSearch = BiDiSearch(testGraph)
     assert testSearch.search(src, dest) is None
