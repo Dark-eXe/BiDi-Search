@@ -9,6 +9,7 @@ class BiDiSearch:
             - visited arrays
             - parent arrays
             - search queues
+            - stats
         """
         self.graph = graph
         self.clean()
@@ -104,3 +105,8 @@ class BiDiSearch:
         self.visited_dest = [False for vertex in range(self.graph.vertices)]
         self.parent_dest = [None for vertex in range(self.graph.vertices)]
         self.queue_dest = Queue()
+
+        self.stats = {"vertices_expanded": 0,
+                      "edges_examined": 0,
+                      "forward_expansions": 0,
+                      "backward_expansions": 0}
