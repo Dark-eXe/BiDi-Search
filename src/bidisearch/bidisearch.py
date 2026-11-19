@@ -14,8 +14,11 @@ class BiDiSearch:
         self.graph = graph
         self.clean()
 
-    def search(self, src, dest) -> list | None:
+    def search(self, src: int, dest: int) -> list | None:
         """Search for intersection, returning path in list representation or None if no path found"""
+        if src == dest:
+            return [src]
+
         self.src, self.dest = src, dest
         self.clean()
 
