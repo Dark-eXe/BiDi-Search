@@ -22,9 +22,19 @@ if __name__ == "__main__":
     searchResult = mySearch.search(src=src, dest=dest)
 
     # Print path
+    print()
+    print(f"searchResult: {searchResult}")
+    print("-" * 25)
     if searchResult is None:
         print(f"No path found between {src} and {dest}.")
     else:
-        print(f"searchResult: {searchResult}")
         print(f"Path found between {src} and {dest}:")
         print(" -> ".join([str(vertex) for vertex in searchResult]))
+    print()
+
+    # Print statistics
+    print("Search Statistics")
+    print("-" * 25)
+    for metric, value in mySearch.stats.items():
+        print(f"{metric}: {value}")
+    print()

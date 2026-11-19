@@ -17,6 +17,7 @@ class BiDiSearch:
     def search(self, src: int, dest: int) -> list | None:
         """Search for intersection, returning path in list representation or None if no path found"""
         if src == dest:
+            self.stats["vertices_expanded"] = 1
             return [src]
 
         self.src, self.dest = src, dest
@@ -25,10 +26,12 @@ class BiDiSearch:
         self.queue_src.enqueue(self.src)
         self.visited_src[src] = True
         self.__levelCount_src = 1
+        self.stats["vertices_expanded"] += 1
 
         self.queue_dest.enqueue(self.dest)
         self.visited_dest[dest] = True
         self.__levelCount_dest = 1
+        self.stats["vertices_expanded"] += 1
 
         while not self.queue_src.isEmpty() or not self.queue_dest.isEmpty():
             intersectionFound = self._expand(frontier=self._nextFrontier())
@@ -44,28 +47,44 @@ class BiDiSearch:
 
         nextLevel = 0
         if frontier == "src":
+            self.stats["forward_expansions"] += 1
+
             for _ in range(self.__levelCount_src):
                 current = self.queue_src.dequeue()
+
                 for neighbor in self.graph.neighbors(current):
                     if not self.visited_src[neighbor]:
                         self.parent_src[neighbor] = current
                         self.visited_src[neighbor] = True
+                        self.stats["vertices_expanded"] += 1
+                        self.stats["edges_examined"] += 1
+
                         if self.visited_dest[neighbor]: # INTERSECTION
                             return neighbor
+                        
                         self.queue_src.enqueue(neighbor)
                         nextLevel += 1
+
             self.__levelCount_src = nextLevel
         else:
+            self.stats["backward_expansions"] += 1
+
             for _ in range(self.__levelCount_dest):
                 current = self.queue_dest.dequeue()
+
                 for neighbor in self.graph.neighbors(current):
                     if not self.visited_dest[neighbor]:
                         self.parent_dest[neighbor] = current
                         self.visited_dest[neighbor] = True
+                        self.stats["vertices_expanded"] += 1
+                        self.stats["edges_examined"] += 1
+
                         if self.visited_src[neighbor]: # INTERSECTION
                             return neighbor
+                        
                         self.queue_dest.enqueue(neighbor)
                         nextLevel += 1
+
             self.__levelCount_dest = nextLevel
         
 
